@@ -19,7 +19,7 @@ router.get("/", async (req, res) => {
       return res.redirect("/login");
     }
     else if (sess) {
-      return res.redirect('/home');
+      return res.redirect('/hm');
     }
     else {
       return res.render("pagenotfound");
