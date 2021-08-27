@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const uest = require('uest')
 const { addHouseFinderValidation, stateValidation
   , addHouseOwnerValidation, houseInfoValidation } = require("../validation/validate");
 const bcrypt = require("bcryptjs");

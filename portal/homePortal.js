@@ -6,10 +6,6 @@ const User = require("../models/User");
 const {
   fmCodeValidation
 } = require("../validation/validate");
-const _ = require('lodash');
-const { use } = require("./addPortal");
-
-
 
 // Home page
 router.get("/", async (req, res) => {
