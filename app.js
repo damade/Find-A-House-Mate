@@ -15,6 +15,9 @@ const loginRouter = require("./portal/login");
 const {loginRequired} = require("./portal/middleware");
 const uest = require('uest')
  
+//Favicon
+var favicon = require('serve-favicon')
+var path = require('path')
 
 
 const MONGODB_URI = process.env.CONN_STRING;
@@ -24,12 +27,6 @@ mongoose.connect(MONGODB_URI, {
   useUnifiedTopology: true,
   autoIndex: true,
 });
-
-// // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({limit: '200mb', extended: true, parameterLimit:100000}));
-
-// parse application/json
-app.use(bodyParser.json({limit: '200mb'}));
 
 // //middleware
 app.use(
@@ -46,6 +43,10 @@ app.use(fileupload({ useTempFiles: true }));
 
 //set public directory
 app.use(express.static(__dirname + "/public"));
+
+//Setting Favicon
+app.use(favicon(path.join(__dirname + '/public/assets/favicon.ico')))
+
 //set ejs as view engine for template
 app.set("view engine", "ejs");
 
