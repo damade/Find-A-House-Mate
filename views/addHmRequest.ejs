@@ -1,0 +1,348 @@
+<%- include("partials/header") %>
+    <link href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <link rel="stylesheet" href="/assets/css/addHM.css">
+    <style>
+        #wrapper {
+            width: 80%;
+        }
+
+        #wrapper .container {
+            max-width: 100%;
+            display: block;
+        }
+    </style>
+    <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4">
+        <div id="wrapper">
+            <div class="container py-5">
+                <!-- For demo purpose -->
+                <div class="row mb-4">
+                    <div class="col-lg-8 mx-auto text-center">
+                        <h1 class="display-6">Register To Get An HouseMate</h1>
+                    </div>
+                </div> <!-- End -->
+                <div class="row">
+                    <div class="col-lg-6 mx-auto">
+                        <div class="card ">
+                            <div class="card-header">
+                                <div class="bg-white shadow-sm pt-4 pl-2 pr-2 pb-2">
+                                    <!-- Credit card form tabs -->
+                                    <ul role="tablist" class="nav bg-light nav-pills rounded nav-fill mb-3">
+                                        <li class="nav-item"> <a data-toggle="pill" href="#house-owner"
+                                                class="nav-link active "> House Owner?</a> </li>
+                                        <li class="nav-item"> <a data-toggle="pill" href="#house-finder"
+                                                class="nav-link ">
+                                                Looking For Shared Flat?</a> </li>
+
+                                    </ul>
+                                </div> <!-- End -->
+                                <!-- House Owner form content -->
+                                <div class="tab-content">
+                                    <!-- House Owner info-->
+                                    <div id="house-owner" class="tab-pane fade show active pt-3">
+                                        <form id="houseOwnerForm" action="/create/ho"  method="POST" role="form" >
+                                            <label for="primarypref">
+                                                <h4>Primary Preferences</h4>
+                                            </label>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="gender">
+                                                            <h6>Gender</h6>
+                                                        </label>
+                                                        <select class="form-control" name="gender">
+                                                            <option>Male</option>
+                                                            <option>Female</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="tribe">
+                                                            <h6>Tribe</h6>
+                                                        </label>
+                                                        <select class="form-control" name="tribe">
+                                                            <option>Igbo</option>
+                                                            <option>Hausa</option>
+                                                            <option>Yoruba</option>
+                                                            <option>Others</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="religion">
+                                                            <h6>Religion</h6>
+                                                        </label>
+                                                        <select class="form-control" name="religion">
+                                                            <option>Christianity</option>
+                                                            <option>Islamic</option>
+                                                            <option>Others</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="duration">
+                                                            <h6>Duration of tenancy</h6>
+                                                        </label>
+                                                        <select class="form-control" name="duration">
+                                                            <option>Three Months</option>
+                                                            <option>Six Months</option>
+                                                            <option>A Year</option>
+                                                            <option>Two Years</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <label for="secondarypref">
+                                                <h4>Secondary Preferences</h4>
+                                            </label>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="music">
+                                                            <h6>Music</h6>
+                                                        </label>
+                                                        <select class="form-control" name="music">
+                                                            <option>Afro beat</option>
+                                                            <option>Pop</option>
+                                                            <option>Reggae</option>
+                                                            <option>Others</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="personality">
+                                                            <h6>Personality Type</h6>
+                                                        </label>
+                                                        <select class="form-control" name="personality">
+                                                            <option>Introvert</option>
+                                                            <option>Extrovert</option>
+                                                            <option>Others</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <label for="contact">
+                                                <h4>Contact</h4>
+                                            </label>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="housetype">
+                                                            <h6>House Type</h6>
+                                                        </label>
+                                                        <select class="form-control" name="houseType">
+                                                            <option>Bungalow</option>
+                                                            <option>Duplex</option>
+                                                            <option>Room and Parlour</option>
+                                                            <option>One Bedroom Flat</option>
+                                                            <option>Two Bedroom Flat</option>
+                                                            <option>Three Bedroom Flat</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="address">
+                                                            <h6>Address</h6>
+                                                        </label>
+                                                        <input id="aho" type="text" name="address"
+                                                            placeholder="House Address" class="form-control" required>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="state">
+                                                            <h6>State</h6>
+                                                        </label>
+                                                        <select class="form-control" name="state" id="States">
+                                                            <option>Choose State</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="description">
+                                                            <h6>House Description</h6>
+                                                        </label>
+                                                        <textarea class="form-control" id="dho" name="description" rows="2" cols="20"
+                                                            placeholder="Enter House Description Here...."></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="comment">
+                                                    <h6>Any other comment for your prospective house-mate to see</h6>
+                                                </label>
+                                                <textarea class="form-control" name="comment" rows="4" cols="40"
+                                                    placeholder=" Enter Comments Here...."></textarea>
+                                            </div>
+                                            <div class="card-footer">
+                                                <button id="hosButton" type="submit"
+                                                    class="subscribe btn btn-primary btn-block shadow-sm"> Submit Info
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- End -->
+                                    <!-- Looking for Shared Flat info -->
+                                    <div id="house-finder" class="tab-pane fade pt-3">
+                                        <form id="houseFinderForm" action="/create/hf"  method="POST" role="form">
+                                            <label for="primarypref">
+                                                <h4>Primary Preferences</h4>
+                                            </label>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="gender">
+                                                            <h6>Gender</h6>
+                                                        </label>
+                                                        <select class="form-control" name="genderf">
+                                                            <option>Male</option>
+                                                            <option>Female</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="tribe">
+                                                            <h6>Tribe</h6>
+                                                        </label>
+                                                        <select class="form-control" name="tribef">
+                                                            <option>Igbo</option>
+                                                            <option>Hausa</option>
+                                                            <option>Yoruba</option>
+                                                            <option>Others</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="religion">
+                                                            <h6>Religion</h6>
+                                                        </label>
+                                                        <select class="form-control" name="religionf">
+                                                            <option>Christianity</option>
+                                                            <option>Islamic</option>
+                                                            <option>Others</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="duration">
+                                                            <h6>Duration of tenancy</h6>
+                                                        </label>
+                                                        <select class="form-control" name="durationf">
+                                                            <option>Three Months</option>
+                                                            <option>Six Months</option>
+                                                            <option>A Year</option>
+                                                            <option>Two Years</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <label for="secondarypref">
+                                                <h4>Secondary Preferences</h4>
+                                            </label>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="music">
+                                                            <h6>Music</h6>
+                                                        </label>
+                                                        <select class="form-control" name="musicf">
+                                                            <option>Afro beat</option>
+                                                            <option>Pop</option>
+                                                            <option>Reggae</option>
+                                                            <option>Others</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="personality">
+                                                            <h6>Personality Type</h6>
+                                                        </label>
+                                                        <select class="form-control" name="personalityf">
+                                                            <option>Introvert</option>
+                                                            <option>Extrovert</option>
+                                                            <option>Others</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="state">
+                                                            <h6>State</h6>
+                                                        </label>
+                                                        <select class="form-control" name="statef" id="Secstates">
+                                                            <option>Choose State</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="comment">
+                                                            <h6>Comment (Optional)</h6>
+                                                        </label>
+                                                        <textarea class="form-control" name="commentf" rows="4" cols="20"
+                                                            placeholder=" Enter Comments Here...."></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="card-footer">
+                                                <button id="hofButton" type="submit"
+                                                    class="subscribe btn btn-primary btn-block shadow-sm"> Submit Search
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div> <!-- End -->
+                                    <!-- End -->
+                                </div>
+                            </div>
+                            <div class="tab-content" id="snackbarf"></div>
+                            <% if(error_message && error_message != "created" ){ %>
+                                <h6 id="em" class="alert alert-danger" role="alert">
+                                    <%= error_message %>
+                                </h6>
+                            <% }%>
+                        </div>
+                    </div>
+                </div>
+                <div role="alert" id="responseDiv"></div>
+                <br>
+            </div>
+
+        </div>
+    </main>
+
+    <script href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/addHmFunc.js"></script>
+    <script>
+        statePopulator(document.getElementById("States"));
+        statePopulator(document.getElementById("Secstates"));
+        validateHouseOwner()
+        validateHouseFinder()
+    </script>
+    <%- include("partials/footer") %>

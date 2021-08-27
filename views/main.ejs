@@ -1,0 +1,346 @@
+<%- include("partials/header") %>
+	<main class="col-md-12 ml-sm-auto col-lg-12 px-md-6 py-6">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="/hm">Home</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Overview</li>
+			</ol>
+		</nav>
+		<h1 class="h1">Dashboard</h1>
+		<h4>Welcome, Today</h4>
+		<div class="row my-4">
+			<div class="col-6 col-md-5 col-lg-3 mb-6 mb-lg-2">
+				<div class="card">
+					<h2 class="card-header">My Profile</h2>
+					<div class="card-body">
+						<h4 class="card-title">Name: <b>
+								<%= user.fullName %>
+							</b></h4>
+						<h5 class="card-title">Email: <b>
+								<%= user.email %>
+							</b></h5>
+						<h5 class="card-title">Mobile: <b>
+								<%= user.phoneNumber %>
+							</b></h5>
+					</div>
+				</div>
+			</div>
+			<div class="col-6 col-md-5 col-lg-3 mb-6 mb-lg-2">
+				<div class="card">
+					<h2 class="card-header">Contact</h2>
+					<div class="card-body">
+						<h5 class="card-title">State: <b>
+								<%= user.state %>
+							</b></h5>
+						<h5 class="card-title">Address: <Address><b>
+									<%= user.address %>
+								</b></Address>
+						</h5>
+					</div>
+				</div>
+			</div>
+			<!--lfah means Looking For A House(Shared Flat)-->
+			<% if(lfah){ %>
+				<div class="col-6 col-md-5 col-lg-3 mb-6 mb-lg-1">
+					<div class="card">
+						<h2 class="card-header">My Preference</h2>
+						<div class="card-body">
+							<h5 class="card-title"><b>Gender: <%= pref.gender %></b></h5>
+							<h5 class="card-title"><b>Tribe: <%= pref.tribe %></b></h5>
+							<h5 class="card-title"><b>Religion: <%= pref.religion %></b></h5>
+						</div>
+					</div>
+				</div>
+				<div class="col-6 col-md-5 col-lg-3 mb-6 mb-lg-2">
+					<div class="card">
+						<h2 class="card-header">Other Preference</h2>
+						<div class="card-body">
+							<h5 class="card-title"><b>Music: <%= pref.music %></b></h5>
+							<h5 class="card-title"><b>Duration: <%= pref.duration %></b></h5>
+							<h5 class="card-title"><b>Personality: <%= pref.personality %></b></h5>
+						</div>
+					</div>
+				</div>
+				<div class="col-6 col-md-5 col-lg-3 mb-6 mb-lg-2">
+					<div class="card">
+						<h2 class="card-header">Still yet to get a shared flat?</h2>
+						<div class="card-body">
+							<h4 class="card-title"><cite><b>Say no more </b>
+									<%= peopleCount %>
+								</cite>person(s) have house and they match your profile.</h4>
+							<h5>
+								<a class="card-title" href="/hm/all" class="btn btn-block btn-light">View All</a>
+							</h5>
+						</div>
+					</div>
+				</div>
+				<% } else if(lfafm){ %>
+					<div class="col-6 col-md-5 col-lg-3 mb-6 mb-lg-1">
+						<div class="card">
+							<h2 class="card-header">My Preference</h2>
+							<div class="card-body">
+								<h5 class="card-title"><b>Gender: <%= pref.gender %></b></h5>
+								<h5 class="card-title"><b>Tribe: <%= pref.tribe %></b></h5>
+								<h5 class="card-title"><b>Religion: <%= pref.religion %></b></h5>
+							</div>
+						</div>
+					</div>
+					<div class="col-6 col-md-5 col-lg-3 mb-6 mb-lg-2">
+						<div class="card">
+							<h2 class="card-header">Other Preference</h2>
+							<div class="card-body">
+								<h5 class="card-title"><b>Music: <%= pref.music %></b></h5>
+								<h5 class="card-title"><b>Duration: <%= pref.duration %></b></h5>
+								<h5 class="card-title"><b>Personality: <%= pref.personality %></b></h5>
+							</div>
+						</div>
+					</div>
+					<!--lfafm means Looking For A Flat Mate (House Owner)-->
+					<div class="col-12 col-md-5 mb-4 mb-lg-2 col-lg-3">
+						<div class="card">
+							<h2 class="card-header">Still yet to get a flatmate to stay with you?</h2>
+							<div class="card-body">
+								<h4 class="card-title"><cite><b>Say no more </b>
+										<%= peopleCount %>
+									</cite>person(s) are looking for a shared flat and they match your profile.
+								</h4>
+								<h5>
+									<a class="card-title" href="/hm/all" class="btn btn-block btn-light">View All</a>
+								</h5>
+							</div>
+						</div>
+					</div>
+					<% } else{ %>
+						<div class="col-13 col-md-5 mb-4 mb-lg-2 col-lg-4">
+							<div class="card">
+								<h2 class="card-header">Looking for a house or flat mate?</h2>
+								<div class="card-body">
+									<h4 class="card-title">You are just one form away from getting your flatmate.</h4>
+									<h5>
+										<a class="card-title" href="hm/add" class="btn btn-block btn-light">Get Started</a>
+									</h5>
+								</div>
+							</div>
+						</div>
+						<% } %>
+		</div>
+		<div class="row col-md-14 ml-sm-10 col-lg-14 px-md-6 py-6">
+			<% if(data && data.length > 0 && lfafm){ %>
+				<div class="col-14 col-xl-12 mb-4 mb-lg-0">
+					<div class="card">
+						<h4 class="card-header">Latest People</h4>
+						<div class="card-body">
+							<div class="table-responsive">
+								<table class="table table-bordered border-dark">
+									<thead>
+										<tr>
+											<th scope="col">S/N</th>
+											<th scope="col">Full Name</th>
+											<th scope="col">Email</th>
+											<th scope="col">Phone Number</th>
+											<th scope="col">State</th>
+											<th scope="col">Gender</th>
+											<th scope="col">Tribe</th>
+											<th scope="col">Religion</th>
+											<th scope="col">Duration</th>
+											<th scope="col">Probable Residence State</th>
+										</tr>
+									</thead>
+									<tbody>
+										<% for(let report of data){ %>
+											<tr>
+												<td scope="col">
+													<%= count++ %>
+												</td>
+												<td>
+													<%= report.user.fullName %>
+												</td>
+												<td>
+													<%= report.user.email %>
+												</td>
+												<td>
+													<%= report.user.phoneNumber %>
+												</td>
+												<td>
+													<%= report.user.state %>
+												</td>
+												<td>
+													<%= report.gender %>
+												</td>
+												<td>
+													<%= report.tribe %>
+												</td>
+												<td>
+													<%= report.religion %>
+												</td>
+												<td>
+													<%= report.duration %>
+												</td>
+												<td>
+													<%= report.state %>
+												</td>
+											</tr>
+
+											<% } %>
+
+
+									</tbody>
+
+
+								</table>
+
+							</div>
+							<a href="/hm/all" class="btn btn-block btn-light">View all</a>
+						</div>
+					</div>
+				</div>
+				<% } else if(data && data.length > 0 && lfah){ %>
+					<div class="col-14 col-xl-12 mb-4 mb-lg-0">
+						<div class="card">
+							<h4 class="card-header">Latest People</h4>
+							<div class="card-body">
+								<div class="table-responsive">
+									<table class="table table-bordered border-dark">
+										<thead>
+											<tr>
+												<th scope="col">S/N</th>
+												<th scope="col">Full Name</th>
+												<th scope="col">Email</th>
+												<th scope="col">Phone Number</th>
+												<th scope="col">State</th>
+												<th scope="col">Gender</th>
+												<th scope="col">Tribe</th>
+												<th scope="col">Religion</th>
+												<th scope="col">Duration</th>
+												<th scope="col">Residence State</th>
+												<th scope="col">View House Info</th>
+											</tr>
+										</thead>
+										<tbody>
+											<% for(let report of data){ %>
+												<tr>
+													<td scope="col">
+														<%= count++ %>
+													</td>
+													<td>
+														<%= report.user.fullName %>
+													</td>
+													<td>
+														<%= report.user.email %>
+													</td>
+													<td>
+														<%= report.user.phoneNumber %>
+													</td>
+													<td>
+														<%= report.user.state %>
+													</td>
+													<td>
+														<%= report.gender %>
+													</td>
+													<td>
+														<%= report.tribe %>
+													</td>
+													<td>
+														<%= report.religion %>
+													</td>
+													<td>
+														<%= report.duration %>
+													</td>
+													<td>
+														<%= report.state %>
+													</td>
+													<td class="active" 
+													onclick="showModal(`<%=JSON.stringify(report)%>`)">
+													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+													stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+													class="feather feather-bar-chart-2">
+													<line x1="18" y1="20" x2="18" y2="10"></line>
+													<line x1="12" y1="20" x2="12" y2="4"></line>
+													<line x1="6" y1="20" x2="6" y2="14"></line>
+												  </svg>
+												  <span class="ml-2">House Info</span>	
+													</td>
+												</tr>
+
+												<% } %>
+										</tbody>
+
+
+									</table>
+
+								</div>
+								<a href="/hm/all" class="btn btn-block btn-light">View all</a>
+							</div>
+						</div>
+					</div>
+					<% } else if(!lfafm && !lfah){ %>
+						<div style="margin-bottom: 8px;" class="card col-6 col-xl-5 ml-3">
+							<h2 class="card-header">Looking for a house or flat mate?</h2>
+							<div class="card-body">
+								<h4 class="card-title">You are just one form away from getting your flatmate.</h4>
+								<h5>
+									<a class="card-" href="hm/add" class="btn btn-block btn-light">Get Started</a>
+								</h5>
+							</div>
+						</div>
+						<% } else{ %>
+							<div style="margin-bottom: 8px;" class="card col-6 col-xl-5 ml-3">
+								<h3 class="card-header">Matching Profile?</h3>
+								<div class="card-body">
+									<h3>No profile matches your profile, keep calm you will see someone soon</h3>
+								</div>
+							</div>
+							<% } %>
+		</div>
+
+	</main>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+	<!-- Modal content -->
+	<div class="modal-content">
+		<span class="close">&times;</span>
+		<div class="card">
+			<h2 class="card-header">Secondary Preference</h2>
+			<div class="card-body">
+				<h5 class="card-title">Music: <span id="dataMu">
+					<b>
+			
+					</b>
+				</span> </h5>
+				<h5 class="card-title">Personality Type: <span id="dataPt">
+					<b>
+			
+					</b>
+				</span> </h5>
+				<h5 class="card-title">Comments: <span id="dataCo">
+					<b>
+			
+					</b>
+				</span> </h5>
+			</div>
+		</div>
+		<div class="card">
+			<h2 class="card-header">House Information Details</h2>
+			<div class="card-body">
+				<h4 class="card-title">Address: <span id="dataAd">
+					<b>
+			
+					</b>
+				</span> </h4>
+				<h5 class="card-title">House Type: <span id="dataHt">
+					<b>
+			
+					</b>
+				</span> </h5>
+				<h5 class="card-title">Description: <span id="dataDe">
+					<b>
+			
+					</b>
+				</span> </h5>
+			</div>
+		</div>
+	</div>
+
+</div>
+<%- include("partials/footer") %>

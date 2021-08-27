@@ -1,0 +1,21 @@
+{
+  "name": "findahousemate",
+  "version": "1.0.0",
+  "description": "It is used for finding an house mate that suits you",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "devstart": "nodemon app.js"
+  },
+  "author": "Damilola",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "joi": "^17.4.1"
+  }
+}

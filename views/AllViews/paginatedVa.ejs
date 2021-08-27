@@ -1,0 +1,294 @@
+<%- include("../partials/header") %>
+    <main class="col-md-12 ml-sm-auto col-lg-12 px-md-4 py-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">
+                        <h5 class="d-flex align-items-center"> Search</h3>
+                    </a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    <h5 class="d-flex align-items-center">Result</h3>
+                </li>
+            </ol>
+        </nav>
+
+        <div style="margin-bottom: 20px;">
+            <div id='errorstatus' class='invisible'>
+                <%= error_message %>
+            </div>
+
+            <div class="row col-md-16 ml-sm-1 col-lg-16 px-md-4 py-4">
+                <% if(data && data.length> 0 && lfafm){ %>
+                    <div class="col-14 col-xl-12 mb-4 mb-lg-0">
+                        <div class="card">
+                            <h4 class="card-header">Latest People</h4>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered border-dark">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">S/N</th>
+                                                <th scope="col">Full Name</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col">Phone Number</th>
+                                                <th scope="col">State</th>
+                                                <th scope="col">Gender</th>
+                                                <th scope="col">Tribe</th>
+                                                <th scope="col">Religion</th>
+                                                <th scope="col">Duration</th>
+                                                <th scope="col">Probable Residence State</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% for(let report of data){ %>
+                                                <tr>
+                                                    <td scope="col">
+                                                        <%= count++ %>
+                                                    </td>
+                                                    <td>
+                                                        <%= report.user.fullName %>
+                                                    </td>
+                                                    <td>
+                                                        <%= report.user.email %>
+                                                    </td>
+                                                    <td>
+                                                        <%= report.user.phoneNumber %>
+                                                    </td>
+                                                    <td>
+                                                        <%= report.user.state %>
+                                                    </td>
+                                                    <td>
+                                                        <%= report.gender %>
+                                                    </td>
+                                                    <td>
+                                                        <%= report.tribe %>
+                                                    </td>
+                                                    <td>
+                                                        <%= report.religion %>
+                                                    </td>
+                                                    <td>
+                                                        <%= report.duration %>
+                                                    </td>
+                                                    <td>
+                                                        <%= report.state %>
+                                                    </td>
+                                                </tr>
+
+                                                <% } %>
+
+
+                                        </tbody>
+
+
+                                    </table>
+
+                                </div>
+                                <a href="/hm/all" class="btn btn-block btn-light">View all</a>
+                            </div>
+                        </div>
+                    </div>
+                    <% } else if(data && data.length> 0 && lfah){ %>
+                        <div class="col-14 col-xl-12 mb-4 mb-lg-0">
+                            <div class="card">
+                                <h4 class="card-header">Latest People</h4>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered border-dark">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">S/N</th>
+                                                    <th scope="col">Full Name</th>
+                                                    <th scope="col">Email</th>
+                                                    <th scope="col">Phone Number</th>
+                                                    <th scope="col">State</th>
+                                                    <th scope="col">Gender</th>
+                                                    <th scope="col">Tribe</th>
+                                                    <th scope="col">Religion</th>
+                                                    <th scope="col">Duration</th>
+                                                    <th scope="col">Residence State</th>
+                                                    <th scope="col">View House Info</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% for(let report of data){ %>
+                                                    <tr>
+                                                        <td scope="col">
+                                                            <%= count++ %>
+                                                        </td>
+                                                        <td>
+                                                            <%= report.user.fullName %>
+                                                        </td>
+                                                        <td>
+                                                            <%= report.user.email %>
+                                                        </td>
+                                                        <td>
+                                                            <%= report.user.phoneNumber %>
+                                                        </td>
+                                                        <td>
+                                                            <%= report.user.state %>
+                                                        </td>
+                                                        <td>
+                                                            <%= report.gender %>
+                                                        </td>
+                                                        <td>
+                                                            <%= report.tribe %>
+                                                        </td>
+                                                        <td>
+                                                            <%= report.religion %>
+                                                        </td>
+                                                        <td>
+                                                            <%= report.duration %>
+                                                        </td>
+                                                        <td>
+                                                            <%= report.state %>
+                                                        </td>
+                                                        <td class="active"
+                                                            onclick="showModal(`<%=JSON.stringify(report)%>`)">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+													stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+													class="feather feather-bar-chart-2">
+													<line x1="18" y1="20" x2="18" y2="10"></line>
+													<line x1="12" y1="20" x2="12" y2="4"></line>
+													<line x1="6" y1="20" x2="6" y2="14"></line>
+												  </svg>
+												  <span class="ml-2">House Info</span>	
+                                                        </td>
+                                                    </tr>
+
+                                                    <% } %>
+                                            </tbody>
+
+
+                                        </table>
+
+                                    </div>
+                                    <a href="/hm/all" class="btn btn-block btn-light">View all</a>
+                                </div>
+                            </div>
+                        </div>
+                        <% } else if(!lfafm && !lfah){ %>
+                            <div style="margin-bottom: 8px;" class="card col-6 col-xl-5 ml-3">
+                                <h2 class="card-header">Looking for a house or flat mate?</h2>
+                                <div class="card-body">
+                                    <h4 class="card-title">You are just one form away from getting your flatmate.</h4>
+                                    <h5>
+                                        <a class="card-" href="hm/add" class="btn btn-block btn-light">Get Started</a>
+                                    </h5>
+                                </div>
+                            </div>
+                            <% } else{ %>
+                                <div style="margin-bottom: 8px;" class="card col-6 col-xl-5 ml-3">
+                                    <h3 class="card-header">Matching Profile?</h3>
+                                    <div class="card-body">
+                                        <h3>No profile matches your profile, keep calm you will see someone soon</h3>
+                                    </div>
+                                </div>
+                                <% } %>
+            </div>
+
+            <div class="row col-md-16 ml-sm-1 col-lg-16 px-md-4 py-4">
+                <div class="col-14 col-xl-12 mb-4 mb-lg-0">
+                    <% if (pages> 0) { %>
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <% if (current==1) { %>
+                                <li class="page-item disabled"><a class="page-link">First</a></li>
+                                <% } else { %>
+                                    <li class="page-item"><a class="page-link" href="/hm/all/1">First</a></li>
+                                    <% } %>
+                                        <% var i=(Number(current)> 5 ? Number(current) - 4 : 1) %>
+                                            <% if (i !==1) { %>
+                                                <li class="page-item disabled"><a class="page-link">...</a></li>
+                                                <% } %>
+                                                    <% for (; i <=(Number(current) + 4) && i <=pages; i++) { %>
+                                                        <% if (i==current) { %>
+                                                            <li class="page-item active"><a class="page-link">
+                                                                    <%= i %>
+                                                                </a></li>
+                                                            <% } else { %>
+                                                                <li class="page-item"><a class="page-link"
+                                                                        href="/hm/all/<%= i %>">
+                                                                        <%= i %>
+                                                                    </a></li>
+                                                                <% } %>
+                                                                    <% if (i==Number(current) + 4 && i < pages) { %>
+                                                                        <li class="page-item disabled"><a
+                                                                                class="page-link">...</a></li>
+                                                                        <% } %>
+                                                                            <% } %>
+                                                                                <% if (current==pages) { %>
+                                                                                    <li class="page-item disabled"><a
+                                                                                            class="page-link">Last</a></li>
+                                                                                    <% } else { %>
+                                                                                        <li class="page-item"><a
+                                                                                                class="page-link"
+                                                                                                href="/hm/all/<%= pages %>">Last</a>
+                                                                                        </li>
+                                                                                        <% } %>
+                                                                                            <li class="page-item">
+                                                                                                <a class="page-link"
+                                                                                                    href="#"
+                                                                                                    aria-label="Next">
+                                                                                                    <span
+                                                                                                        aria-hidden="true">&raquo;</span>
+                                                                                                </a>
+                                                                                            </li>
+                        </ul>
+                        <% } %>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="card">
+                <h2 class="card-header">Secondary Preference</h2>
+                <div class="card-body">
+                    <h5 class="card-title">Music: <span id="dataMu">
+                            <b>
+
+                            </b>
+                        </span> </h5>
+                    <h5 class="card-title">Personality Type: <span id="dataPt">
+                            <b>
+
+                            </b>
+                        </span> </h5>
+                    <h5 class="card-title">Comments: <span id="dataCo">
+                            <b>
+
+                            </b>
+                        </span> </h5>
+                </div>
+            </div>
+            <div class="card">
+                <h2 class="card-header">House Information Details</h2>
+                <div class="card-body">
+                    <h4 class="card-title">Address: <span id="dataAd">
+                            <b>
+
+                            </b>
+                        </span> </h4>
+                    <h5 class="card-title">House Type: <span id="dataHt">
+                            <b>
+
+                            </b>
+                        </span> </h5>
+                    <h5 class="card-title">Description: <span id="dataDe">
+                            <b>
+
+                            </b>
+                        </span> </h5>
+                </div>
+            </div>
+        </div>
+    </div>
