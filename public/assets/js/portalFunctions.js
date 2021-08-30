@@ -30,6 +30,8 @@ function showModal(data) {
 
   document.getElementById('dataDe').innerHTML = obj.houseInfo.description;
 
+  document.getElementById('imageOut').src = obj.houseInfo.imageUrl;
+
   // Get the <span> element that closes the modal
   var span = document.getElementsByClassName("close")[0];
 

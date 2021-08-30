@@ -39,7 +39,8 @@
                                 <div class="tab-content">
                                     <!-- House Owner info-->
                                     <div id="house-owner" class="tab-pane fade show active pt-3">
-                                        <form id="houseOwnerForm" action="/create/ho"  method="POST" role="form" >
+                                        <form id="houseOwnerForm" action="/create/ho"  enctype="multipart/form-data" 
+                                        method="POST" role="form" >
                                             <label for="primarypref">
                                                 <h4>Primary Preferences</h4>
                                             </label>
@@ -179,6 +180,10 @@
                                                             placeholder="Enter House Description Here...."></textarea>
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Select house picture:</label>
+                                                <input accept="image/png, image/jpeg" class="form-control" type="file" name="image" />
                                             </div>
 
                                             <div class="form-group">

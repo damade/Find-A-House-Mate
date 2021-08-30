@@ -7,6 +7,7 @@ const User = require("../models/User");
 const HouseMate = require("../models/HouseMate");
 const HouseInfo = require("../models/HouseInfo");
 const mongoose = require("mongoose");
+const { storage, cloudinary } = require("../cloudinary");
 var sess;
 
 
@@ -34,8 +35,45 @@ router.post("/create/ho", async (req, res) => {
       obj.error_message = log_message;
       return res.render("addHmRequest", obj);
     }
+    try { 
+      var file = null;
+    try {
+      file = req.files.image;
+    } catch (e) {
+      return res.render("internalserver", { exception: e });
+    }
+    // const file = req.files.image;
+    if (file === null) {
+      var obj = {};
+    obj.error_message = "Please Input A File";
+    return res.render("addHmRequest", obj);
+    }
 
-    try {  
+    await cloudinary.uploader.upload(
+      file.tempFilePath,
+      {
+        folder: 'FindAHouseMate',
+        use_filename: true,
+        quality: "auto:low",
+      },
+      (err, result) => {
+        if (err) {
+          console.log(err);
+          const { message, http_code, name } = err;
+          console.log(err);
+          obj.error_message = message;
+          return res.render("addHmRequest", obj);
+        }
+        const { secure_url, public_id } = result;
+        path = secure_url;
+        console.log(path);
+      }
+    ); 
+
+      const newHouseInfo = new HouseInfo({
+          address, houseType, description, imageUrl: path
+        })
+
       const savedHouseInfo = await newHouseInfo.save();
       console.log(savedHouseInfo);
 
@@ -49,7 +87,7 @@ router.post("/create/ho", async (req, res) => {
         state: req.body.state,
         houseOwner: true,
         comment: (!!req.body.comment.trim() ? req.body.comment : "Nothing To Say"),
-        
+        houseInfo: savedHouseInfo._id,
         user: ID,
       });
 
@@ -127,53 +165,5 @@ router.post("/create/hf", async (req, res) => {
     return res.render("internalserver", { exception: e })
   }
 })
-
-
-
-router.get("/login", (req, res) => {
-  var obj = {};
-  obj.error_message = "";
-  return res.render("login", obj);
-});
-
-router.post("/login", async (req, res, next) => {
-  console.log(req.body);
-
-  //Passes all the info to render
-  var obj = {};
-
-  try {
-
-    const { error } = loginValidation(req.body);
-
-    if (error) {
-      var log_message = error.details[0].message;
-      obj.error_message = log_message;
-      return res.render("login", obj);
-    }
-    const user = await User.findOne({ email: req.body.loginEmail });
-
-    if (!user) {
-      obj.error_message = "Incorrect Email or User Not found, kindly proceed to register";
-      return res.render("login", obj);
-    }
-    const validPassword = await bcrypt.compare(req.body.loginPassword, user.password);
-    if (!validPassword) {
-      obj.error_message = "Invalid Password";
-      return res.render("login", obj);
-    }
-
-    sess = req.session;
-    sess.user = user
-
-    console.log(sess)
-
-    return res.redirect('/hm/add');
-  }
-  catch (e) {
-    return res.render("internalserver", { exception: e });
-  }
-});
-
 
 module.exports = router;
