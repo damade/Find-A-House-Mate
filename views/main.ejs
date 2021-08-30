@@ -61,7 +61,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-6 col-md-5 col-lg-3 mb-6 mb-lg-2">
+				<div class="col-6 col-md-5 col-lg-2 mb-6 mb-lg-3">
 					<div class="card">
 						<h2 class="card-header">Still yet to get a shared flat?</h2>
 						<div class="card-body">
@@ -70,6 +70,19 @@
 								</cite>person(s) have house and they match your profile.</h4>
 							<h5>
 								<a class="card-title" href="/hm/all" class="btn btn-block btn-light">View All</a>
+							</h5>
+						</div>
+					</div>
+				</div>
+				<div class="col-6 col-md-5 mb-4 mb-lg-2 col-lg-3">
+					<div class="card">
+						<h2 class="card-header">Update House Status</h2>
+						<div class="card-body">
+							<h4 class="card-title"><cite><b> <i>You have gotten a House? </i> </b>
+								</cite>and you want to close the request or you want to reset your preferences.
+							</h4>
+							<h5>
+								<a class="card-title" href="/hm/del" class="btn btn-block btn-light">Shall we begin</a>
 							</h5>
 						</div>
 					</div>
@@ -95,6 +108,36 @@
 							</div>
 						</div>
 					</div>
+					<div class="col-6 col-md-5 col-lg-3 mb-6 mb-lg-2">
+						<div class="card">
+							<h2 class="card-header">House Information Details</h2>
+							<div class="card-body">
+								<h5 class="card-title">Address: <span id="dataAd">
+									<b>
+										<%= pref.houseInfo.address %>
+									</b>
+								</span> </h5>
+								<h5 class="card-title">House Type: <span id="dataHt">
+									<b>
+										<%= pref.houseInfo.houseType %>
+									</b>
+								</span> </h5>
+								<h5 class="card-title">Description: <span id="dataDe">
+									<b>
+										<%= pref.houseInfo.description %>
+									</b>
+								</span> </h5>
+							</div>
+						</div>
+					</div>
+					<div class="col-12 col-md-5 mb-4 mb-lg-2 col-lg-3">
+						<div class="card">
+							<h2 class="card-header">House Image</h2>
+							<div class="card-body">
+								<img src="<%= pref.houseInfo.imageUrl %>" alt="House Image">
+							</div>
+						</div>
+					</div>
 					<!--lfafm means Looking For A Flat Mate (House Owner)-->
 					<div class="col-12 col-md-5 mb-4 mb-lg-2 col-lg-3">
 						<div class="card">
@@ -106,6 +149,19 @@
 								</h4>
 								<h5>
 									<a class="card-title" href="/hm/all" class="btn btn-block btn-light">View All</a>
+								</h5>
+							</div>
+						</div>
+					</div>
+					<div class="col-12 col-md-5 mb-4 mb-lg-2 col-lg-3">
+						<div class="card">
+							<h2 class="card-header">Update House Status</h2>
+							<div class="card-body">
+								<h4 class="card-title"><cite><b> <i>You have gotten a flatmate? </i> </b>
+									</cite>and you want to close the request or you want to reset your preferences.
+								</h4>
+								<h5>
+									<a class="card-title" href="/hm/del" class="btn btn-block btn-light">Shall we begin</a>
 								</h5>
 							</div>
 						</div>
@@ -274,6 +330,14 @@
 						</div>
 					</div>
 					<% } else if(!lfafm && !lfah){ %>
+						<div style="margin-bottom: 8px;" class="card col-6 col-xl-5 ml-3">
+							<h2 class="card-header">You are new here, right?</h2>
+							<div class="card-body">
+								<h4 class="card-title">You are confused about where to start from,</h4>
+								<h4 class="card-title">The next box leads you to your destination.</h4>
+							
+							</div>
+						</div>
 						<div style="margin-bottom: 8px;" class="card col-6 col-xl-5 ml-3">
 							<h2 class="card-header">Looking for a house or flat mate?</h2>
 							<div class="card-body">

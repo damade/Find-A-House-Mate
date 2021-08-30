@@ -40,9 +40,9 @@ router.post("/create/ho", async (req, res) => {
     try {
       file = req.files.image;
     } catch (e) {
-      return res.render("internalserver", { exception: e });
+      obj.error_message = "Kindly Add Image For The House";
+      return res.render("addHmRequest", obj);
     }
-    // const file = req.files.image;
     if (file === null) {
       var obj = {};
     obj.error_message = "Please Input A File";

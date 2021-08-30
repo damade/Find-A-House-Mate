@@ -1,6 +1,8 @@
+const { render } = require("ejs");
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
+const HouseInfo = require("../models/HouseInfo");
 const HouseMate = require("../models/HouseMate");
 const User = require("../models/User");
 const {
@@ -44,7 +46,7 @@ router.get(['/all', '/all/:page'], async (req, res) => {
     var perPage = 20
     var page = req.params.page || 1
 
-    obj.data = await getPaginatedDataToShare(user,page, perPage);
+    obj.data = await getPaginatedDataToShare(user, page, perPage);
     obj.error_message = "";
     obj.count = 1;
     obj.lfah = user.lookingForAHouse;
@@ -52,6 +54,30 @@ router.get(['/all', '/all/:page'], async (req, res) => {
     obj.current = page;
     obj.pages = Math.ceil((await getTotalCount(user)) / perPage);
     return res.render("AllViews/paginatedVa", obj);
+
+  } catch (e) {
+    return res.render("internalserver", { exception: e });
+  }
+})
+
+// Delete Screen.
+router.get("/del", async (req, res) => {
+
+  try {
+    //Retrieving Sessions and User Id.
+    let sess = req.session;
+    let user = sess.user
+    
+    console.log(await delData(user));
+
+    if (await delData(user)) {
+      sess.user.lookingForHouseMate = false;
+      sess.user.lookingForAHouse = false;
+      res.redirect("/hm")
+    }
+    else {
+      return res.render("internalserver", { exception: "Something went wrong, Kindly contact the Admin." });
+    }
 
   } catch (e) {
     return res.render("internalserver", { exception: e });
@@ -82,9 +108,74 @@ async function getMyPref(users) {
   }
   else if (users.lookingForHouseMate) {
     result = await HouseMate.findOne({ user: mongoose.Types.ObjectId(users._id), houseOwner: true })
+      .populate("houseInfo");
   }
 
   return result;
+}
+
+async function delData(users) {
+  var result = null;
+  var isDeleted = false;
+  if (users.lookingForAHouse) {
+
+    HouseMate.deleteMany({ user: mongoose.Types.ObjectId(users._id) }, function (err) {
+      if (err) {
+        isDeleted = false;
+        return false;
+      }
+      else {
+        User.findByIdAndUpdate(users._id, { lookingForAHouse: false },
+          function (err) {
+            if (err) {
+              isDeleted = false;
+              return false;
+            }
+            else {
+              isDeleted = true;
+              return true
+            }
+          });
+      }
+    });
+
+    isDeleted = true;
+
+  }
+  else if (users.lookingForHouseMate) {
+
+    result = await HouseMate.findOne({ user: mongoose.Types.ObjectId(users._id), houseOwner: true })
+
+    HouseInfo.findByIdAndDelete(result.houseInfo, function (err) {
+      if (err) {
+        isDeleted = false;
+        return false;
+      }
+      else {
+        HouseMate.deleteMany({ user: mongoose.Types.ObjectId(users._id) }, function (err) {
+          if (err) {
+            isDeleted = false;
+            return false;
+          }
+          else {
+            User.findByIdAndUpdate(users._id, { lookingForAHouse: false },
+              function (err) {
+                if (err) {
+                  isDeleted = false;
+                  return false;
+                }
+                else {
+                  isDeleted = true;
+                  return true
+                }
+              });
+          }
+        });
+      }
+    });
+    isDeleted = true;
+  }
+  return isDeleted;
 }
 
 async function getDataToShare(users) {
